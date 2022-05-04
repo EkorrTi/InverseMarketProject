@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace InverseMarketProject.entity
 {
-    internal class Customer
+    internal struct Customer
     {
         int id;
         string email;
         string password;
         string phone_number;
+
+        public Customer(int id, string email, string password, string phone_number)
+        {
+            this.id = id;
+            this.email = email;
+            this.password = password;
+            this.phone_number = phone_number;
+        }
     }
 }
