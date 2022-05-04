@@ -8,10 +8,10 @@ namespace InverseMarketProject.entity
 {
     internal struct Customer
     {
-        int id;
-        string email;
-        string password;
-        string phone_number;
+        public int id { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public string phone_number { get; set; }
 
         public Customer(int id, string email, string password, string phone_number)
         {

@@ -8,13 +8,13 @@ namespace InverseMarketProject.entity
 {
     internal struct Request
     {
-        int id;
-        int customer_id;
-        string title;
-        string description;
-        double total_price;
-        DateOnly date;
-        string status;
+        public int id { get; set; }
+        public int customer_id { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public double total_price { get; set; }
+        public DateOnly date { get; set; }
+        public string status { get; set; }
 
         public Request(int id, int customer_id, string title, string description, double total_price, DateOnly date, string status)
         {
