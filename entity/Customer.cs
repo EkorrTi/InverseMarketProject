@@ -20,5 +20,11 @@ namespace InverseMarketProject.entity
             this.password = password;
             this.phone_number = phone_number;
         }
+
+        public override string ToString()
+        {
+            string str = base.ToString() + $" [id:{id}, email:{email}, password:{password}, phone_number:{phone_number}]";
+            return str;
+        }
     }
 }
