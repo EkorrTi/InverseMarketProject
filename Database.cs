@@ -8,7 +8,7 @@ using InverseMarketProject.entity;
 
 namespace InverseMarketProject
 {
-    internal class Database
+    public class Database
     {
         public static NpgsqlConnection conn = new NpgsqlConnection("Host=localhost;Username=postgres;Password=ninja;Database=market");
         private NpgsqlCommand cmd;

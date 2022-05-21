@@ -1,3 +1,5 @@
+using InverseMarketProject;
+
 namespace WinFormsApp1
 {
     internal static class Program

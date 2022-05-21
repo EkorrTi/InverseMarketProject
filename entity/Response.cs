@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InverseMarketProject.entity
 {
-    internal struct Response
+    public struct Response
     {
         public int id { get; set; }
         public int request_id { get; set; }
