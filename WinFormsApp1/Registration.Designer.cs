@@ -110,7 +110,7 @@
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.emailTextBox);
             this.Name = "Registration";
-            this.Text = "Form2";
+            this.Text = "Register";
             this.Load += new System.EventHandler(this.Registration_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
