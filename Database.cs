@@ -10,8 +10,18 @@ namespace InverseMarketProject
 {
     public class Database
     {
-        private static readonly NpgsqlConnection conn = new("Host=localhost;Username=postgres;Password=ninja;Database=market");
-        public Database() { conn.Open(); }
+        public static readonly NpgsqlConnection conn = new("Host=localhost;Username=postgres;Password=ninja;Database=market");
+        public Database()
+        {
+            if (conn.State == System.Data.ConnectionState.Closed)
+                conn.Open();
+        }
+
+        public void closeConnection()
+        {
+            if (conn.State == System.Data.ConnectionState.Open)
+                conn.Close();
+        }
 
         private static readonly String getUsers = "SELECT * FROM userss;";
         private static readonly String getAdverts = "SELECT * FROM advert;";
