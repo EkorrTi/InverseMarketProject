@@ -42,7 +42,7 @@ namespace WinFormsApp1
         {
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
 
-            label2.Text = "Clicked " + dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            label2.Text = "Clicked on id=" + dataGridView1.Rows[e.RowIndex].Cells[0].Value;
         }
     }
 }

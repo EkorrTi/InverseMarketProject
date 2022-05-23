@@ -85,9 +85,10 @@ namespace WinFormsApp1
         private void replyButton_Click(object sender, EventArgs e)
         {
             var message = replyMessageTextBox.Text;
+            var price = 0;
             try
             {
-                var price = replyPriceTextBox.Text == "" ? 0 : Convert.ToInt32(replyPriceTextBox.Text);
+                price = replyPriceTextBox.Text == "" ? 0 : Convert.ToInt32(replyPriceTextBox.Text);
             } catch( FormatException )
             {
                 MessageBox.Show("Please write a valid price");
