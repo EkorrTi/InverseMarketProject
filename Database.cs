@@ -26,7 +26,7 @@ namespace InverseMarketProject
         private static readonly String getUsers = "SELECT * FROM userss;";
         private static readonly String getAdverts = "SELECT * FROM advert;";
         private static readonly String getReplies = "SELECT * FROM reply;";
-        private static readonly String getRepliesByAdvertId = "SELECT * FROM reply WHERE advertId=$1;";
+        private static readonly String getRepliesByAdvertId = "SELECT * FROM reply WHERE advert_id=$1;";
         private static readonly String getUserById = "SELECT * FROM userss WHERE id=$1";
         private static readonly String getUserByUsername = "SELECT * FROM userss WHERE username = $1;";
         private static readonly String getUserByEmail = "SELECT * FROM userss WHERE email = $1;";

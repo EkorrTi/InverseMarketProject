@@ -25,7 +25,7 @@ namespace WinFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             Hide();
-            var form = new Registration();
+            var form = new AdvertForm(1);
             form.Tag = this;
             form.Show();
         }
