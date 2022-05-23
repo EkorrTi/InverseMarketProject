@@ -8,18 +8,18 @@ namespace WinFormsApp1
 {
     public class FormProvider
     {
-        public static RegistrationForm registrationForm
+        public static RegistrationForm? registrationForm { get; set; }
+
+        public static LoginForm? loginForm 
         {
             get
             {
-                if (_registrationForm == null)
-                    _registrationForm = new RegistrationForm();
-                return _registrationForm;
+                if(loginForm == null)
+                    loginForm = new LoginForm();
+                return loginForm;
             }
+            set { loginForm = value; }
         }
-        private static RegistrationForm? _registrationForm;
-
-        public static LoginForm? loginForm { get; set; }
 
         public static AddAdvertForm? addAdvertForm { get; set; }
 
