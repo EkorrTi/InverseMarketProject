@@ -30,13 +30,14 @@ namespace InverseMarketProject
         private static readonly String getUserById = "SELECT * FROM userss WHERE id=$1";
         private static readonly String getUserByUsername = "SELECT * FROM userss WHERE username = $1;";
         private static readonly String getUserByEmail = "SELECT * FROM userss WHERE email = $1;";
+        private static readonly String getUserByEmailAndPassword = "SELECT * FROM userss WHERE email = $1 AND password = $2";
         private static readonly String getAdvertById = "SELECT * FROM advert WHERE id=$1";
         private static readonly String getReplyById = "SELECT * FROM advert WHERE id=$1";
         private static readonly String insertUser = "INSERT INTO userss (email, password, first_name, last_name, username) VALUES($1, $2, $3, $4, $5)"; // id, email, password, fname, lname, username
-        private static readonly String insertAdvert = "INSERT INTO advert (title, description, totalPrice, status, user_id) VALUES($1, $2, $3, $4, $5)"; // id, title, desc, price, status, userId
+        private static readonly String insertAdvert = "INSERT INTO advert (title, description, total_price, status, user_id) VALUES($1, $2, $3, $4, $5)"; // id, title, desc, price, status, userId
         private static readonly String insertReply = "INSERT INTO reply (message, price, user_id, advert_id) VALUES($1, $2, $3, $4)"; // id, message, price, userId, advertId
         private static readonly String updateUser = "UPDATE userss SET email=$2, password=$3, first_name=$4, last_name=$5, username=$6 WHERE id=$1";
-        private static readonly String updateAdvert = "UPDATE advert SET title=$2, description=$3, totalPrice=$4, status=$5, user_id=$6 WHERE id=$1";
+        private static readonly String updateAdvert = "UPDATE advert SET title=$2, description=$3, total_price=$4, status=$5, user_id=$6 WHERE id=$1";
         private static readonly String updateReply = "UPDATE reply SET message=$2, price=$3, user_id=$4, advert_id=$5 WHERE id=$1";
         private static readonly String deleteUserById = "DELETE FROM userss WHERE id = $1";
         private static readonly String deleteAdvertById = "DELETE FROM advert WHERE id = $1";
@@ -144,6 +145,24 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getUserByEmail, conn);
             cmd.Parameters.AddWithValue(email);
+            using var rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+                return new User(
+                         rdr.GetInt32(0), // Id
+                         rdr.GetString(1), // email
+                         rdr.GetString(2), // password
+                         rdr.GetString(3), // fname
+                         rdr.GetString(4), // lname
+                         rdr.GetString(5) // username
+                     );
+            return null;
+        }
+
+        public User? GetUserByEmailAndPassword(string email, string password)
+        {
+            using var cmd = new NpgsqlCommand(getUserByEmailAndPassword, conn);
+            cmd.Parameters.AddWithValue(email);
+            cmd.Parameters.AddWithValue(password);
             using var rdr = cmd.ExecuteReader();
             if (rdr.Read())
                 return new User(

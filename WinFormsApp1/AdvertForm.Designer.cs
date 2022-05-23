@@ -40,6 +40,7 @@
             this.replyListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.orderComboBox = new System.Windows.Forms.ComboBox();
             this.orderBy = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,11 +157,22 @@
             this.orderBy.TabIndex = 9;
             this.orderBy.Text = "Order by:";
             // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(12, 153);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(133, 33);
+            this.backButton.TabIndex = 10;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // AdvertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.orderBy);
             this.Controls.Add(this.orderComboBox);
             this.Controls.Add(this.replyListPanel);
@@ -171,6 +183,7 @@
             this.Controls.Add(this.titleTextBox);
             this.Name = "AdvertForm";
             this.Text = "Form2";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdvertForm_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -192,5 +205,6 @@
         private FlowLayoutPanel replyListPanel;
         private ComboBox orderComboBox;
         private Label orderBy;
+        private Button backButton;
     }
 }

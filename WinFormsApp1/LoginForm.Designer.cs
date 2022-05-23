@@ -28,20 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.loginBox = new System.Windows.Forms.TextBox();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
+            this.errorLabel = new System.Windows.Forms.Label();
+            this.passTextBox = new System.Windows.Forms.TextBox();
+            this.toRegister = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // loginBox
+            // passwordTextBox
             // 
-            this.loginBox.Location = new System.Drawing.Point(114, 49);
-            this.loginBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.loginBox.Name = "loginBox";
-            this.loginBox.Size = new System.Drawing.Size(110, 23);
-            this.loginBox.TabIndex = 0;
+            this.passwordTextBox.Location = new System.Drawing.Point(114, 49);
+            this.passwordTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(110, 23);
+            this.passwordTextBox.TabIndex = 0;
             // 
             // label1
             // 
@@ -49,9 +52,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(10, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 25);
+            this.label1.Size = new System.Drawing.Size(58, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Login";
+            this.label1.Text = "Email";
             // 
             // label2
             // 
@@ -63,38 +66,63 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Password";
             // 
-            // textBox1
+            // emailTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(114, 11);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(110, 23);
-            this.textBox1.TabIndex = 3;
+            this.emailTextBox.Location = new System.Drawing.Point(114, 13);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(167, 23);
+            this.emailTextBox.TabIndex = 5;
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(114, 86);
+            this.loginButton.Location = new System.Drawing.Point(77, 97);
             this.loginButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(82, 22);
+            this.loginButton.Size = new System.Drawing.Size(133, 25);
             this.loginButton.TabIndex = 4;
             this.loginButton.Text = "Log in";
             this.loginButton.UseVisualStyleBackColor = true;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click_1);
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.Location = new System.Drawing.Point(0, 0);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(100, 23);
+            this.errorLabel.TabIndex = 0;
+            // 
+            // passTextBox
+            // 
+            this.passTextBox.Location = new System.Drawing.Point(114, 50);
+            this.passTextBox.Name = "passTextBox";
+            this.passTextBox.Size = new System.Drawing.Size(167, 23);
+            this.passTextBox.TabIndex = 6;
+            this.passTextBox.TextChanged += new System.EventHandler(this.passTextBox_TextChanged);
+            // 
+            // toRegister
+            // 
+            this.toRegister.Location = new System.Drawing.Point(66, 156);
+            this.toRegister.Name = "toRegister";
+            this.toRegister.Size = new System.Drawing.Size(153, 27);
+            this.toRegister.TabIndex = 7;
+            this.toRegister.Text = "I don\'t have an account";
+            this.toRegister.UseVisualStyleBackColor = true;
+            this.toRegister.Click += new System.EventHandler(this.toRegister_Click);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 338);
+            this.ClientSize = new System.Drawing.Size(323, 195);
+            this.Controls.Add(this.toRegister);
+            this.Controls.Add(this.passTextBox);
             this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.loginBox);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LoginForm";
             this.Text = "Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,10 +130,13 @@
 
         #endregion
 
-        private TextBox loginBox;
+        private TextBox passwordTextBox;
         private Label label1;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox emailTextBox;
         private Button loginButton;
+        private Label errorLabel;
+        private TextBox passTextBox;
+        private Button toRegister;
     }
 }

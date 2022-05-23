@@ -35,6 +35,7 @@
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.registerButton = new System.Windows.Forms.Button();
+            this.toLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // emailTextBox
@@ -89,7 +90,7 @@
             // 
             // registerButton
             // 
-            this.registerButton.Location = new System.Drawing.Point(12, 202);
+            this.registerButton.Location = new System.Drawing.Point(77, 186);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(120, 33);
             this.registerButton.TabIndex = 6;
@@ -97,11 +98,22 @@
             this.registerButton.UseVisualStyleBackColor = true;
             this.registerButton.Click += new System.EventHandler(this.Registration_Click);
             // 
-            // Registration
+            // toLogin
+            // 
+            this.toLogin.Location = new System.Drawing.Point(54, 258);
+            this.toLogin.Name = "toLogin";
+            this.toLogin.Size = new System.Drawing.Size(177, 23);
+            this.toLogin.TabIndex = 7;
+            this.toLogin.Text = "I already have an account";
+            this.toLogin.UseVisualStyleBackColor = true;
+            this.toLogin.Click += new System.EventHandler(this.toLogin_Click);
+            // 
+            // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(297, 293);
+            this.Controls.Add(this.toLogin);
             this.Controls.Add(this.registerButton);
             this.Controls.Add(this.lastNameTextBox);
             this.Controls.Add(this.firstNameTextBox);
@@ -109,8 +121,9 @@
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.emailTextBox);
-            this.Name = "Registration";
+            this.Name = "RegistrationForm";
             this.Text = "Register";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RegistrationForm_FormClosed);
             this.Load += new System.EventHandler(this.Registration_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -126,5 +139,6 @@
         private TextBox lastNameTextBox;
         private TextBox firstNameTextBox;
         private Button registerButton;
+        private Button toLogin;
     }
 }

@@ -29,115 +29,124 @@
         private void InitializeComponent()
         {
             this.addButton = new System.Windows.Forms.Button();
-            this.categoryText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.titleTextBox = new System.Windows.Forms.TextBox();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.priceLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.nameText = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.priceText = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.priceTextBox = new System.Windows.Forms.TextBox();
+            this.descTextBox = new System.Windows.Forms.TextBox();
+            this.backButton = new System.Windows.Forms.Button();
+            this.usernameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(586, 260);
+            this.addButton.Location = new System.Drawing.Point(204, 304);
+            this.addButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(108, 29);
+            this.addButton.Size = new System.Drawing.Size(94, 22);
             this.addButton.TabIndex = 3;
             this.addButton.Text = "Add product";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // categoryText
+            // titleTextBox
             // 
-            this.categoryText.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.categoryText.Location = new System.Drawing.Point(128, 75);
-            this.categoryText.Name = "categoryText";
-            this.categoryText.Size = new System.Drawing.Size(125, 30);
-            this.categoryText.TabIndex = 4;
+            this.titleTextBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.titleTextBox.Location = new System.Drawing.Point(116, 115);
+            this.titleTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.titleTextBox.Name = "titleTextBox";
+            this.titleTextBox.Size = new System.Drawing.Size(182, 25);
+            this.titleTextBox.TabIndex = 4;
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 32);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Category";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.titleLabel.Location = new System.Drawing.Point(14, 111);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(48, 25);
+            this.titleLabel.TabIndex = 5;
+            this.titleLabel.Text = "Title";
             // 
-            // label2
+            // priceLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(12, 120);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 32);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Name";
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.priceLabel.Location = new System.Drawing.Point(14, 149);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(54, 25);
+            this.priceLabel.TabIndex = 6;
+            this.priceLabel.Text = "Price";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(280, 10);
+            this.label3.Location = new System.Drawing.Point(64, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(241, 46);
+            this.label3.Size = new System.Drawing.Size(208, 37);
             this.label3.TabIndex = 7;
-            this.label3.Text = "About product";
+            this.label3.Text = "Add your advert";
             // 
-            // nameText
+            // priceTextBox
             // 
-            this.nameText.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nameText.Location = new System.Drawing.Point(128, 125);
-            this.nameText.Name = "nameText";
-            this.nameText.Size = new System.Drawing.Size(125, 30);
-            this.nameText.TabIndex = 8;
+            this.priceTextBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.priceTextBox.Location = new System.Drawing.Point(116, 153);
+            this.priceTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.priceTextBox.Name = "priceTextBox";
+            this.priceTextBox.Size = new System.Drawing.Size(182, 25);
+            this.priceTextBox.TabIndex = 8;
             // 
-            // label4
+            // descTextBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(12, 170);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 32);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Price";
+            this.descTextBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.descTextBox.Location = new System.Drawing.Point(18, 193);
+            this.descTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.descTextBox.Multiline = true;
+            this.descTextBox.Name = "descTextBox";
+            this.descTextBox.PlaceholderText = "Your Description of the product (optional)";
+            this.descTextBox.Size = new System.Drawing.Size(280, 98);
+            this.descTextBox.TabIndex = 11;
             // 
-            // priceText
+            // backButton
             // 
-            this.priceText.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.priceText.Location = new System.Drawing.Point(128, 175);
-            this.priceText.Name = "priceText";
-            this.priceText.Size = new System.Drawing.Size(125, 30);
-            this.priceText.TabIndex = 10;
+            this.backButton.Location = new System.Drawing.Point(18, 304);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 12;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // textBox3
+            // usernameLabel
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(374, 75);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(320, 130);
-            this.textBox3.TabIndex = 11;
-            this.textBox3.Text = "Some information about product";
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Font = new System.Drawing.Font("Impact", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.usernameLabel.Location = new System.Drawing.Point(204, 12);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(68, 27);
+            this.usernameLabel.TabIndex = 13;
+            this.usernameLabel.Text = "label2";
             // 
-            // Form3
+            // AddAdvertForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 453);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.priceText);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.nameText);
+            this.ClientSize = new System.Drawing.Size(310, 348);
+            this.Controls.Add(this.usernameLabel);
+            this.Controls.Add(this.backButton);
+            this.Controls.Add(this.descTextBox);
+            this.Controls.Add(this.priceTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.categoryText);
+            this.Controls.Add(this.priceLabel);
+            this.Controls.Add(this.titleLabel);
+            this.Controls.Add(this.titleTextBox);
             this.Controls.Add(this.addButton);
-            this.Name = "Form3";
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "AddAdvertForm";
             this.Text = "Form3";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddAdvertForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,13 +154,13 @@
 
         #endregion
         private Button addButton;
-        private TextBox categoryText;
-        private Label label1;
-        private Label label2;
+        private TextBox titleTextBox;
+        private Label titleLabel;
+        private Label priceLabel;
         private Label label3;
-        private TextBox nameText;
-        private Label label4;
-        private TextBox priceText;
-        private TextBox textBox3;
+        private TextBox priceTextBox;
+        private TextBox descTextBox;
+        private Button backButton;
+        private Label usernameLabel;
     }
 }

@@ -32,13 +32,13 @@ namespace WinFormsApp1
         public string Author
         {
             get { return _author; }
-            set { value = _author;authorLabel.Text = value; }
+            set { _author = value; authorLabel.Text = value; }
         }
 
         public int Price
         {
             get { return _price; }
-            set { value = _price; priceLabel.Text = value.ToString() + " тг"; }
+            set { _price = value ; priceLabel.Text = value.ToString() + " тг"; }
         }
     }
 }

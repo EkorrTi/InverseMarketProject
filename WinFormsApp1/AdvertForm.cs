@@ -25,7 +25,8 @@ namespace WinFormsApp1
         private const string ORDER_BY_DATE_ASC = "Date asc";
         private const string ORDER_BY_PRICE_DESC = "Price desc";
         private const string ORDER_BY_PRICE_ASC = "Price asc";
-        private List<Tuple<Reply, string>> replies = new();
+        private dynamic replies;
+        private List<Tuple<Reply, String>> replyList = new();
         public AdvertForm()
         {
             db = new Database();
@@ -58,8 +59,8 @@ namespace WinFormsApp1
         private void setList()
         {
             replyListPanel.Controls.Clear();
-            ReplyForm[] replyForms = new ReplyForm[this.replies.Count];
-            foreach(Tuple< Reply, String> reply in this.replies)
+            ReplyForm[] replyForms = new ReplyForm[this.replyList.Count];
+            foreach(Tuple<Reply, String> reply in this.replies)
             {
                 ReplyForm replyForm = new();
                 replyForm.Message = reply.Item1.Message;
@@ -92,6 +93,7 @@ namespace WinFormsApp1
             } catch( FormatException )
             {
                 MessageBox.Show("Please write a valid price");
+                return;
             }
 
 
@@ -135,32 +137,42 @@ namespace WinFormsApp1
 
         private void orderByPriceAsc()
         {
-            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
-                                                        orderby reply.Item1.Price ascending
-                                                        select reply);
+            this.replies = from reply in replyList
+                                orderby reply.Item1.Price ascending
+                                select reply;
         }
 
         private void orderByPriceDesc()
         {
-            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
-                                                        orderby reply.Item1.Price descending
-                                                        select reply);
+            this.replies = from reply in replyList
+                           orderby reply.Item1.Price descending
+                                select reply;
         }
 
         private void orderByDateAsc()
         {
-            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
-                                                        orderby reply.Item1.Id ascending
-                                                        select reply);
+            this.replies = from reply in replyList
+                           orderby reply.Item1.Id ascending
+                                select reply;
         }
 
         private void orderByDateDesc()
         {
-            this.replies = (List<Tuple<Reply, string>>) replies.OrderBy(reply => reply.Item1.Id);
-                
-                // (List<Tuple<Reply, string>>)(from reply in replies
-                            //                            orderby reply.Item1.Id descending
-                              //                          select reply);
+            this.replies = from reply in replyList
+                           orderby reply.Item1.Id descending
+                           select reply;
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            FormProvider.listForm = new ListForm();
+            Hide();
+            FormProvider.listForm.Show();
+        }
+
+        private void AdvertForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

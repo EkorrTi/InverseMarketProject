@@ -115,9 +115,11 @@ namespace WinFormsApp1
             {
                 db.InsertUser(user);
                 db.closeConnection();
-                this.Hide();
-                var loginForm = new Form1(); // TODO replace with LoginForm
-                loginForm.Show();
+                Hide();
+                FormProvider.loggedUser = db.GetUserByUsername(user.UserName);
+                FormProvider.listForm = new ListForm(); // TODO replace with LoginForm
+                FormProvider.listForm.Show();
+                Close();
             }
         }
 
@@ -194,6 +196,17 @@ namespace WinFormsApp1
                 MessageBox.Show("Email is empty");
                 return false;
             }
+        }
+
+        private void toLogin_Click(object sender, EventArgs e)
+        {
+            FormProvider.loginForm.Show();
+            Hide();
+        }
+
+        private void RegistrationForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

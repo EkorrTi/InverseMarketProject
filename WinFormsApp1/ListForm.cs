@@ -18,6 +18,8 @@ namespace WinFormsApp1
         {
             InitializeComponent();
 
+            usernameLabel.Text = FormProvider.loggedUser.UserName;
+
             Database db = new();
             DataTable dt = new();
 
@@ -32,7 +34,7 @@ namespace WinFormsApp1
 
             foreach (Advert a in db.GetAdverts())
             {
-                dt.Rows.Add(new object[] { a.Id, a.Title, a.Description, a.TotalPrice, a.Status, a.UserId, a.Posted });
+                dt.Rows.Add(new object[] { a.Id, a.Title, a.Description, Convert.ToInt32(a.TotalPrice), a.Status, a.UserId, a.Posted });
             }
 
             dataGridView1.DataSource = dt;
@@ -42,7 +44,24 @@ namespace WinFormsApp1
         {
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
 
-            label2.Text = "Clicked on id=" + dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+            int rowId = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+
+            label2.Text = "Clicked on id=" + rowId;
+            FormProvider.advertForm = new AdvertForm(rowId);
+            FormProvider.advertForm.Show();
+            Close();
+        }
+
+        private void toAddAdvert_Click(object sender, EventArgs e)
+        {
+            FormProvider.addAdvertForm = new AddAdvertForm();
+            FormProvider.addAdvertForm.Show();
+            Close();
+        }
+
+        private void ListForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -45,20 +45,25 @@ namespace InverseMarketProject.entity
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int TotalPrice { get; set; }
+        public string TotalPrice { get; set; }
         public string Status { get; set; }
         public int UserId { get; set; }
 
         public DateTime Posted { get; set;}
 
-        public Advert(int id, string title, string description, string totalPrice, string status, int userId)
+        public Advert(string title, string description, string totalPrice, string status, int userId)
         {
-            Id = id;
             Title = title;
             Description = description;
-            TotalPrice = Convert.ToInt32(totalPrice);
+            TotalPrice = totalPrice;
             Status = status;
             UserId = userId;
+        }
+
+        public Advert(int id, string title, string description, string totalPrice, string status, int userId) : 
+            this(title, description, totalPrice, status, userId)
+        {
+            Id = id;
         }
 
         public Advert(int id, string title, string description, string totalPrice, string status, int userId, DateTime posted) : 
