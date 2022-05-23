@@ -48,7 +48,7 @@ namespace WinFormsApp1
             titleTextBox.Text = advert.Title;
             descriptionTextBox.Text = advert.Description;
             statusTextBox.Text = advert.Status;
-            priceTextBox.Text = advert.TotalPrice;
+            priceTextBox.Text = advert.TotalPrice.ToString();
 
             getList();
 
@@ -61,7 +61,7 @@ namespace WinFormsApp1
             ReplyForm[] replyForms = new ReplyForm[this.replies.Count];
             foreach(Tuple< Reply, String> reply in this.replies)
             {
-                ReplyForm replyForm = new ReplyForm();
+                ReplyForm replyForm = new();
                 replyForm.Message = reply.Item1.Message;
                 replyForm.Author = reply.Item2;
                 replyForm.Price = reply.Item1.Price;
@@ -85,7 +85,14 @@ namespace WinFormsApp1
         private void replyButton_Click(object sender, EventArgs e)
         {
             var message = replyMessageTextBox.Text;
-            var price = replyPriceTextBox.Text == null ? 0: Convert.ToInt32(replyMessageTextBox.Text);
+            try
+            {
+                var price = replyPriceTextBox.Text == "" ? 0 : Convert.ToInt32(replyPriceTextBox.Text);
+            } catch( FormatException )
+            {
+                MessageBox.Show("Please write a valid price");
+            }
+
 
             var userId = 1; // TODO GET CURRENT USER
 
