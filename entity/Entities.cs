@@ -26,6 +26,15 @@ namespace InverseMarketProject.entity
             this.LastName = lname;
             this.UserName = username;
         }
+
+        public User(string email, string password, string username, string firstName, string lastName)
+        {
+            Email = email;
+            Password = password;
+            UserName = username;
+            FirstName = firstName;
+            LastName = lastName;
+        }
     }
 
     public class Advert

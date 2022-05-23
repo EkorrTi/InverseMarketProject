@@ -28,6 +28,7 @@ namespace InverseMarketProject
         private static readonly String getReplies = "SELECT * FROM reply;";
         private static readonly String getUserById = "SELECT * FROM userss WHERE id=$1";
         private static readonly String getUserByUsername = "SELECT * FROM userss WHERE username = $1;";
+        private static readonly String getUserByEmail = "SELECT * FROM userss WHERE email = $1;";
         private static readonly String getAdvertById = "SELECT * FROM advert WHERE id=$1";
         private static readonly String getReplyById = "SELECT * FROM advert WHERE id=$1";
         private static readonly String insertUser = "INSERT INTO userss VALUES($1, $2, $3, $4, $5, $6, $7)"; // id, email, password, phone, fname, lname, username
@@ -126,6 +127,24 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getUserByUsername, conn);
             cmd.Parameters.AddWithValue(username);
+            using var rdr = cmd.ExecuteReader();
+            rdr.Read();
+
+            return new User(
+                     rdr.GetInt32(0), // Id
+                     rdr.GetString(1), // email
+                     rdr.GetString(2), // password
+                     rdr.GetString(3), // phone_number
+                     rdr.GetString(4), // fname
+                     rdr.GetString(5), // lname
+                     rdr.GetString(6) // username
+                     );
+        }
+
+        public User GetUserByEmail(String email)
+        {
+            using var cmd = new NpgsqlCommand(getUserByEmail, conn);
+            cmd.Parameters.AddWithValue(email);
             using var rdr = cmd.ExecuteReader();
             rdr.Read();
 
