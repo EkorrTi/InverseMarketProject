@@ -76,5 +76,13 @@ namespace InverseMarketProject.entity
             UserId = userId;
             AdvertId = advertId;
         }
+
+        public Reply(string message, int price, int userId, int advertId)
+        {
+            Message = message;
+            Price = price;
+            UserId = userId;
+            AdvertId = advertId;
+        }
     }
 }

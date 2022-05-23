@@ -38,6 +38,8 @@
             this.replyMessageTextBox = new System.Windows.Forms.TextBox();
             this.statusTextBox = new System.Windows.Forms.TextBox();
             this.replyListPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.orderComboBox = new System.Windows.Forms.ComboBox();
+            this.orderBy = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,9 +78,9 @@
             this.panel1.Controls.Add(this.replyInfoTextBox);
             this.panel1.Controls.Add(this.replyPriceTextBox);
             this.panel1.Controls.Add(this.replyMessageTextBox);
-            this.panel1.Location = new System.Drawing.Point(12, 168);
+            this.panel1.Location = new System.Drawing.Point(12, 215);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 161);
+            this.panel1.Size = new System.Drawing.Size(776, 162);
             this.panel1.TabIndex = 3;
             // 
             // replyButton
@@ -131,16 +133,36 @@
             // 
             // replyListPanel
             // 
-            this.replyListPanel.Location = new System.Drawing.Point(12, 335);
+            this.replyListPanel.Location = new System.Drawing.Point(12, 383);
             this.replyListPanel.Name = "replyListPanel";
-            this.replyListPanel.Size = new System.Drawing.Size(776, 167);
+            this.replyListPanel.Size = new System.Drawing.Size(776, 119);
             this.replyListPanel.TabIndex = 7;
+            // 
+            // orderComboBox
+            // 
+            this.orderComboBox.FormattingEnabled = true;
+            this.orderComboBox.Location = new System.Drawing.Point(667, 168);
+            this.orderComboBox.Name = "orderComboBox";
+            this.orderComboBox.Size = new System.Drawing.Size(121, 23);
+            this.orderComboBox.TabIndex = 8;
+            this.orderComboBox.SelectedIndexChanged += new System.EventHandler(this.orderComboBox_SelectedIndexChanged);
+            // 
+            // orderBy
+            // 
+            this.orderBy.AutoSize = true;
+            this.orderBy.Location = new System.Drawing.Point(608, 171);
+            this.orderBy.Name = "orderBy";
+            this.orderBy.Size = new System.Drawing.Size(56, 15);
+            this.orderBy.TabIndex = 9;
+            this.orderBy.Text = "Order by:";
             // 
             // AdvertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.orderBy);
+            this.Controls.Add(this.orderComboBox);
             this.Controls.Add(this.replyListPanel);
             this.Controls.Add(this.statusTextBox);
             this.Controls.Add(this.panel1);
@@ -168,5 +190,7 @@
         private Button replyButton;
         private TextBox statusTextBox;
         private FlowLayoutPanel replyListPanel;
+        private ComboBox orderComboBox;
+        private Label orderBy;
     }
 }

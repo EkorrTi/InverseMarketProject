@@ -14,40 +14,52 @@ namespace WinFormsApp1
 {
     public partial class AdvertForm : Form
     {
+        private Database db;
+        private int advertId;
+
+        private const int ORDER_BY_DATE_DESC_INDEX = 0;
+        private const int ORDER_BY_DATE_ASC_INDEX = 1;
+        private const int ORDER_BY_PRICE_DESC_INDEX = 2;
+        private const int ORDER_BY_PRICE_ASC_INDEX = 3;
+        private const string ORDER_BY_DATE_DESC = "Date desc";
+        private const string ORDER_BY_DATE_ASC = "Date asc";
+        private const string ORDER_BY_PRICE_DESC = "Price desc";
+        private const string ORDER_BY_PRICE_ASC = "Price asc";
+        private List<Tuple<Reply, string>> replies = new();
         public AdvertForm()
         {
+            db = new Database();
             InitializeComponent();
         }
-        public AdvertForm(int advertId)
+        public AdvertForm(int advertId) : this()
         {
-            InitializeComponent();
-            setAdvert(advertId);
+            this.advertId = advertId;
+            orderComboBox.Items.Add(ORDER_BY_DATE_DESC);
+            orderComboBox.Items.Add(ORDER_BY_DATE_ASC);
+            orderComboBox.Items.Add(ORDER_BY_PRICE_DESC);
+            orderComboBox.Items.Add(ORDER_BY_PRICE_ASC);
+            orderComboBox.SelectedIndex = ORDER_BY_DATE_DESC_INDEX;
+            setAdvert();
         }
 
-        private void setAdvert(int advertId)
+        private void setAdvert()
         {
-            Database db = new Database();
             Advert advert = db.GetAdvertById(advertId);
             titleTextBox.Text = advert.Title;
             descriptionTextBox.Text = advert.Description;
             statusTextBox.Text = advert.Status;
             priceTextBox.Text = advert.TotalPrice;
 
-            List<Reply> replies = db.GetRepliesByAdvertId(advertId);
-            List<Tuple<Reply, String>> repliesWithAuthor = new();
-            foreach(Reply reply in replies)
-            {
-                var user = db.GetUserById(reply.UserId);
-                repliesWithAuthor.Add(new Tuple<Reply, String>(reply, user.UserName));
-            }
-            setList(repliesWithAuthor);
+            getList();
+
+            setList();
         }
 
-        private void setList(List<Tuple<Reply, String>> replies)
+        private void setList()
         {
             replyListPanel.Controls.Clear();
-            ReplyForm[] replyForms = new ReplyForm[replies.Count];
-            foreach(Tuple< Reply, String> reply in replies)
+            ReplyForm[] replyForms = new ReplyForm[this.replies.Count];
+            foreach(Tuple< Reply, String> reply in this.replies)
             {
                 ReplyForm replyForm = new ReplyForm();
                 replyForm.Message = reply.Item1.Message;
@@ -57,6 +69,19 @@ namespace WinFormsApp1
             }
         }
 
+        private void getList()
+        {
+            List<Reply> replies = db.GetRepliesByAdvertId(advertId);
+            List<Tuple<Reply, String>> repliesWithAuthor = new();
+            foreach (Reply reply in replies)
+            {
+                var user = db.GetUserById(reply.UserId);
+                repliesWithAuthor.Add(new Tuple<Reply, String>(reply, user.UserName));
+            }
+            this.replies =  repliesWithAuthor;
+            orderByDateDesc();
+        }
+
         private void replyButton_Click(object sender, EventArgs e)
         {
             var message = replyMessageTextBox.Text;
@@ -64,7 +89,12 @@ namespace WinFormsApp1
 
             var userId = 1; // TODO GET CURRENT USER
 
-
+            db.InsertReply(
+                new Reply(message: message, 
+                          price: price, 
+                          userId: userId, 
+                          advertId: advertId)
+                );
         }
 
         private void replyPriceTextBox_TextChanged(object sender, EventArgs e)
@@ -73,6 +103,54 @@ namespace WinFormsApp1
             {
                 replyMessageTextBox.Text = "";
             }
+        }
+
+        private void orderComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(orderComboBox.SelectedIndex)
+            {
+                case ORDER_BY_DATE_ASC_INDEX:
+                    orderByDateAsc();
+                    break;
+                case ORDER_BY_PRICE_DESC_INDEX:
+                    orderByPriceDesc();
+                    break;
+                case ORDER_BY_PRICE_ASC_INDEX:
+                    orderByPriceAsc();
+                    break;
+                default:
+                    orderByDateDesc();
+                    break;
+            };
+            setList();
+        }
+
+        private void orderByPriceAsc()
+        {
+            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
+                                                        orderby reply.Item1.Price ascending
+                                                        select reply);
+        }
+
+        private void orderByPriceDesc()
+        {
+            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
+                                                        orderby reply.Item1.Price descending
+                                                        select reply);
+        }
+
+        private void orderByDateAsc()
+        {
+            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
+                                                        orderby reply.Item1.Id ascending
+                                                        select reply);
+        }
+
+        private void orderByDateDesc()
+        {
+            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
+                           orderby reply.Item1.Id descending
+                           select reply);
         }
     }
 }
