@@ -73,7 +73,6 @@
             this.Controls.Add(this.messageLabel);
             this.Name = "ReplyForm";
             this.Size = new System.Drawing.Size(733, 141);
-            this.Load += new System.EventHandler(this.ReplyForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

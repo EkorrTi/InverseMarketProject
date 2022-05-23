@@ -111,7 +111,6 @@
             this.Controls.Add(this.emailTextBox);
             this.Name = "Registration";
             this.Text = "Register";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Registration_FormClosed);
             this.Load += new System.EventHandler(this.Registration_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
