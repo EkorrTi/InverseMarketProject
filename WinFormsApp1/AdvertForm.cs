@@ -156,9 +156,11 @@ namespace WinFormsApp1
 
         private void orderByDateDesc()
         {
-            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
-                           orderby reply.Item1.Id descending
-                           select reply);
+            this.replies = (List<Tuple<Reply, string>>) replies.OrderBy(reply => reply.Item1.Id);
+                
+                // (List<Tuple<Reply, string>>)(from reply in replies
+                            //                            orderby reply.Item1.Id descending
+                              //                          select reply);
         }
     }
 }

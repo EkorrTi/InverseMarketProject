@@ -17,6 +17,9 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
-        
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
