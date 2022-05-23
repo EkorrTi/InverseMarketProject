@@ -53,6 +53,7 @@ namespace WinFormsApp1
                 replyForm.Message = reply.Item1.Message;
                 replyForm.Author = reply.Item2;
                 replyForm.Price = reply.Item1.Price;
+                replyListPanel.Controls.Add(replyForm);
             }
         }
 
