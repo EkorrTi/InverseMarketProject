@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp1
 {
-    partial class Advert
+    partial class AdvertForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,10 +32,12 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.replyButton = new System.Windows.Forms.Button();
             this.replyInfoTextBox = new System.Windows.Forms.TextBox();
             this.replyPriceTextBox = new System.Windows.Forms.TextBox();
             this.replyMessageTextBox = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.statusTextBox = new System.Windows.Forms.TextBox();
+            this.replyListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +72,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.replyButton);
             this.panel1.Controls.Add(this.replyInfoTextBox);
             this.panel1.Controls.Add(this.replyPriceTextBox);
             this.panel1.Controls.Add(this.replyMessageTextBox);
@@ -77,6 +80,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(776, 161);
             this.panel1.TabIndex = 3;
+            // 
+            // replyButton
+            // 
+            this.replyButton.Location = new System.Drawing.Point(698, 128);
+            this.replyButton.Name = "replyButton";
+            this.replyButton.Size = new System.Drawing.Size(75, 23);
+            this.replyButton.TabIndex = 5;
+            this.replyButton.Text = "Reply";
+            this.replyButton.UseVisualStyleBackColor = true;
+            this.replyButton.Click += new System.EventHandler(this.replyButton_Click);
             // 
             // replyInfoTextBox
             // 
@@ -90,12 +103,13 @@
             // 
             // replyPriceTextBox
             // 
-            this.replyPriceTextBox.Location = new System.Drawing.Point(672, 128);
+            this.replyPriceTextBox.Location = new System.Drawing.Point(591, 129);
             this.replyPriceTextBox.Multiline = true;
             this.replyPriceTextBox.Name = "replyPriceTextBox";
             this.replyPriceTextBox.PlaceholderText = "Your price";
             this.replyPriceTextBox.Size = new System.Drawing.Size(101, 20);
             this.replyPriceTextBox.TabIndex = 1;
+            this.replyPriceTextBox.TextChanged += new System.EventHandler(this.replyPriceTextBox_TextChanged);
             // 
             // replyMessageTextBox
             // 
@@ -106,26 +120,34 @@
             this.replyMessageTextBox.Size = new System.Drawing.Size(770, 79);
             this.replyMessageTextBox.TabIndex = 0;
             // 
-            // listBox1
+            // statusTextBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(12, 365);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(776, 139);
-            this.listBox1.TabIndex = 4;
+            this.statusTextBox.Location = new System.Drawing.Point(538, 139);
+            this.statusTextBox.Multiline = true;
+            this.statusTextBox.Name = "statusTextBox";
+            this.statusTextBox.ReadOnly = true;
+            this.statusTextBox.Size = new System.Drawing.Size(166, 23);
+            this.statusTextBox.TabIndex = 6;
             // 
-            // Advert
+            // replyListPanel
+            // 
+            this.replyListPanel.Location = new System.Drawing.Point(12, 335);
+            this.replyListPanel.Name = "replyListPanel";
+            this.replyListPanel.Size = new System.Drawing.Size(776, 167);
+            this.replyListPanel.TabIndex = 7;
+            // 
+            // AdvertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.replyListPanel);
+            this.Controls.Add(this.statusTextBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.priceTextBox);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.titleTextBox);
-            this.Name = "Advert";
+            this.Name = "AdvertForm";
             this.Text = "Form2";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -143,6 +165,8 @@
         private TextBox replyInfoTextBox;
         private TextBox replyPriceTextBox;
         private TextBox replyMessageTextBox;
-        private ListBox listBox1;
+        private Button replyButton;
+        private TextBox statusTextBox;
+        private FlowLayoutPanel replyListPanel;
     }
 }

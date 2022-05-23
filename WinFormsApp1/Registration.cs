@@ -125,6 +125,7 @@ namespace WinFormsApp1
             if (!isUserExists)
             {
                 db.InsertUser(user);
+                db.closeConnection();
                 this.Hide();
                 var loginForm = new Form1(); // TODO replace with LoginForm
                 loginForm.Show();
