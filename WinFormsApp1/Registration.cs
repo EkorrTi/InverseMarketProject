@@ -33,19 +33,8 @@ namespace WinFormsApp1
             var username = usernameTextBox.Text.ToString();
             var firstName = firstNameTextBox.Text.ToString();
             var lastName = lastNameTextBox.Text.ToString();
-            resetErrors();
 
             validateFields(email, password, retryPassword, username, firstName, lastName);
-        }
-
-        private void resetErrors()
-        {
-            emailErrorTextBox.Text = "";
-            passwordErrorTextBox.Text = "";
-            retryPasswordErrorTextBox.Text = "";
-            usernameErrorTextBox.Text = "";
-            firstNameErrorTextBox.Text = "";
-            lastNameErrorTextBox.Text = "";
         }
 
         private void validateFields(string email, 
@@ -73,9 +62,9 @@ namespace WinFormsApp1
 
         private bool validateLastName(string lastName)
         {
-            if (lastName == null)
+            if (lastName == "")
             {
-                lastNameErrorTextBox.Text = "This field is required";
+                MessageBox.Show("Last Name is required");
                 return false;
             }
 
@@ -84,9 +73,9 @@ namespace WinFormsApp1
 
         private bool validateFirstName(string firstName)
         {
-            if (firstName == null)
+            if (firstName == "")
             {
-                firstNameErrorTextBox.Text = "This field is required";
+                MessageBox.Show("First Name is required");
                 return false;
             }
 
@@ -95,9 +84,9 @@ namespace WinFormsApp1
 
         private bool validateUsername(string username)
         {
-            if (username==null)
+            if (username=="")
             {
-                usernameErrorTextBox.Text = "This field is required";
+                MessageBox.Show("Username is required");
                 return false;
             }
 
@@ -113,14 +102,14 @@ namespace WinFormsApp1
             if (dbUser != null)
             {
                 isUserExists = true;
-                emailErrorTextBox.Text = "Email already registered";
+                MessageBox.Show("Email already registered");
             }
 
             dbUser = db.GetUserByUsername(user.UserName);
             if (dbUser != null)
             {
                 isUserExists = true;
-                usernameErrorTextBox.Text = "Username already registered";
+                MessageBox.Show("Username already registered");
             }
             if (!isUserExists)
             {
@@ -136,14 +125,13 @@ namespace WinFormsApp1
         {
             if (password != retryPassword)
             {
-                passwordErrorTextBox.Text = "Passwords doesn't match";
-                retryPasswordErrorTextBox.Text = "Passwords doesn't match";
+                MessageBox.Show("Passwords doesn't match");
                 return false;
             }
 
             if (password.Length < 8)
             {
-                passwordErrorTextBox.Text = "Password must be at least 8 symbols";
+                MessageBox.Show("Password must be at least 8 symbols");
                 return false;
             }
 
@@ -181,7 +169,7 @@ namespace WinFormsApp1
 
             if (validCount != 4)
             {
-                passwordErrorTextBox.Text = "Password must contain 1 uppercase, 1 lowercase letter, 1 number and 1 special character";
+                MessageBox.Show("Password must contain 1 uppercase, 1 lowercase letter, 1 number and 1 special character");
                 return false;
             }
 
@@ -198,6 +186,12 @@ namespace WinFormsApp1
             }
             catch (FormatException)
             {
+                MessageBox.Show("Not a valid Email");
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Email is empty");
                 return false;
             }
         }

@@ -11,17 +11,15 @@ namespace InverseMarketProject.entity
         public int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Phone { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
 
-        public User(int id, string email, string password, string phone, string fname, string lname, string username)
+        public User(int id, string email, string password, string username, string fname, string lname)
         {
             this.Id = id;
             this.Email = email;
             this.Password = password;
-            this.Phone = phone;
             this.FirstName = fname;
             this.LastName = lname;
             this.UserName = username;
@@ -34,6 +32,11 @@ namespace InverseMarketProject.entity
             UserName = username;
             FirstName = firstName;
             LastName = lastName;
+        }
+
+        public override String ToString()
+        {
+            return Id.ToString();
         }
     }
 
