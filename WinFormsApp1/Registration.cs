@@ -185,6 +185,12 @@ namespace WinFormsApp1
             }
             catch (FormatException)
             {
+                MessageBox.Show("Not a valid Email");
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Email is empty");
                 return false;
             }
         }

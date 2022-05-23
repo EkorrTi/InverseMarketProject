@@ -15,7 +15,7 @@ namespace InverseMarketProject.entity
         public string LastName { get; set; }
         public string UserName { get; set; }
 
-        public User(int id, string email, string password, string fname, string lname, string username)
+        public User(int id, string email, string password, string username, string fname, string lname)
         {
             this.Id = id;
             this.Email = email;

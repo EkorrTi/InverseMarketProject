@@ -10,9 +10,9 @@ NpgsqlDataAdapter adapter = new();
 adapter.SelectCommand = new NpgsqlCommand("SELECT * FROM userss", Database.conn);
 adapter.Fill(table);
 
-//database.InsertUser( new User(
-//        1, "email@hentai.com", "password", "firstname", "lastname", "userguy"
+//database.InsertUser(new User(
+//        "email@hen.com", "password", "firstname", "lastname", "user"
 //    ));
 
 Console.WriteLine( database.GetUsers() );
-Console.WriteLine( database.GetUserByUsername("user") );
+Console.WriteLine( database.GetUserByUsername("userguy") );

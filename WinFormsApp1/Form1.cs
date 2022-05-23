@@ -13,7 +13,7 @@ namespace WinFormsApp1
             Database db = new();
             DataTable dt = new();
 
-            dt.Columns.Add("ID", typeof(Int32));
+            dt.Columns.Add("ID", typeof(int));
             foreach (User user in db.GetUsers())
             {
                 dt.Rows.Add(new object[] {user.Id});
