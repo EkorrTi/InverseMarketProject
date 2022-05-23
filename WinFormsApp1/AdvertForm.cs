@@ -25,7 +25,8 @@ namespace WinFormsApp1
         private const string ORDER_BY_DATE_ASC = "Date asc";
         private const string ORDER_BY_PRICE_DESC = "Price desc";
         private const string ORDER_BY_PRICE_ASC = "Price asc";
-        private List<Tuple<Reply, string>> replies = new();
+        private dynamic replies;
+        private List<Tuple<Reply, String>> replyList = new();
         public AdvertForm()
         {
             db = new Database();
@@ -59,7 +60,7 @@ namespace WinFormsApp1
         {
             replyListPanel.Controls.Clear();
             ReplyForm[] replyForms = new ReplyForm[this.replies.Count];
-            foreach(Tuple< Reply, String> reply in this.replies)
+            foreach(Tuple<Reply, String> reply in this.replies)
             {
                 ReplyForm replyForm = new();
                 replyForm.Message = reply.Item1.Message;
@@ -135,30 +136,30 @@ namespace WinFormsApp1
 
         private void orderByPriceAsc()
         {
-            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
-                                                        orderby reply.Item1.Price ascending
-                                                        select reply);
+            this.replies = from reply in replyList
+                                orderby reply.Item1.Price ascending
+                                select reply;
         }
 
         private void orderByPriceDesc()
         {
-            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
-                                                        orderby reply.Item1.Price descending
-                                                        select reply);
+            this.replies = from reply in replyList
+                           orderby reply.Item1.Price descending
+                                select reply;
         }
 
         private void orderByDateAsc()
         {
-            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
-                                                        orderby reply.Item1.Id ascending
-                                                        select reply);
+            this.replies = from reply in replyList
+                           orderby reply.Item1.Id ascending
+                                select reply;
         }
 
         private void orderByDateDesc()
         {
-            this.replies = (List<Tuple<Reply, string>>)(from reply in replies
+            this.replies = from reply in replyList
                            orderby reply.Item1.Id descending
-                           select reply);
+                           select reply;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace InverseMarketProject
 {
     public class Database
     {
-        public static readonly NpgsqlConnection conn = new("Host=localhost;Username=postgres;Password=ninja;Database=market");
+        public static readonly NpgsqlConnection conn = new("Host=localhost;Username=postgres;Password=123;Database=iitu");
         public Database()
         {
             if (conn.State == System.Data.ConnectionState.Closed)
@@ -30,6 +30,7 @@ namespace InverseMarketProject
         private static readonly String getUserById = "SELECT * FROM userss WHERE id=$1";
         private static readonly String getUserByUsername = "SELECT * FROM userss WHERE username = $1;";
         private static readonly String getUserByEmail = "SELECT * FROM userss WHERE email = $1;";
+        private static readonly String getUserByEmailAndPassword = "SELECT * FROM userss WHERE email = $1 AND password = $2";
         private static readonly String getAdvertById = "SELECT * FROM advert WHERE id=$1";
         private static readonly String getReplyById = "SELECT * FROM advert WHERE id=$1";
         private static readonly String insertUser = "INSERT INTO userss (email, password, first_name, last_name, username) VALUES($1, $2, $3, $4, $5)"; // id, email, password, fname, lname, username
@@ -144,6 +145,23 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getUserByEmail, conn);
             cmd.Parameters.AddWithValue(email);
+            using var rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+                return new User(
+                         rdr.GetInt32(0), // Id
+                         rdr.GetString(1), // email
+                         rdr.GetString(2), // password
+                         rdr.GetString(3), // fname
+                         rdr.GetString(4), // lname
+                         rdr.GetString(5) // username
+                     );
+            return null;
+        }
+
+        public User? GetUserByEmailAndPassword(string email, string password)
+        {
+            using var cmd = new NpgsqlCommand(getUserByEmailAndPassword, conn);
+            cmd.Parameters.AddWithValue(email, password);
             using var rdr = cmd.ExecuteReader();
             if (rdr.Read())
                 return new User(
