@@ -35,12 +35,6 @@
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.registerButton = new System.Windows.Forms.Button();
-            this.emailErrorTextBox = new System.Windows.Forms.TextBox();
-            this.passwordErrorTextBox = new System.Windows.Forms.TextBox();
-            this.retryPasswordErrorTextBox = new System.Windows.Forms.TextBox();
-            this.lastNameErrorTextBox = new System.Windows.Forms.TextBox();
-            this.firstNameErrorTextBox = new System.Windows.Forms.TextBox();
-            this.usernameErrorTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // emailTextBox
@@ -103,65 +97,11 @@
             this.registerButton.UseVisualStyleBackColor = true;
             this.registerButton.Click += new System.EventHandler(this.Registration_Click);
             // 
-            // emailErrorTextBox
-            // 
-            this.emailErrorTextBox.Location = new System.Drawing.Point(285, 12);
-            this.emailErrorTextBox.Name = "emailErrorTextBox";
-            this.emailErrorTextBox.ReadOnly = true;
-            this.emailErrorTextBox.Size = new System.Drawing.Size(373, 23);
-            this.emailErrorTextBox.TabIndex = 8;
-            // 
-            // passwordErrorTextBox
-            // 
-            this.passwordErrorTextBox.Location = new System.Drawing.Point(285, 41);
-            this.passwordErrorTextBox.Name = "passwordErrorTextBox";
-            this.passwordErrorTextBox.ReadOnly = true;
-            this.passwordErrorTextBox.Size = new System.Drawing.Size(373, 23);
-            this.passwordErrorTextBox.TabIndex = 9;
-            // 
-            // retryPasswordErrorTextBox
-            // 
-            this.retryPasswordErrorTextBox.Location = new System.Drawing.Point(285, 70);
-            this.retryPasswordErrorTextBox.Name = "retryPasswordErrorTextBox";
-            this.retryPasswordErrorTextBox.ReadOnly = true;
-            this.retryPasswordErrorTextBox.Size = new System.Drawing.Size(373, 23);
-            this.retryPasswordErrorTextBox.TabIndex = 10;
-            // 
-            // lastNameErrorTextBox
-            // 
-            this.lastNameErrorTextBox.Location = new System.Drawing.Point(285, 157);
-            this.lastNameErrorTextBox.Name = "lastNameErrorTextBox";
-            this.lastNameErrorTextBox.ReadOnly = true;
-            this.lastNameErrorTextBox.Size = new System.Drawing.Size(373, 23);
-            this.lastNameErrorTextBox.TabIndex = 13;
-            // 
-            // firstNameErrorTextBox
-            // 
-            this.firstNameErrorTextBox.Location = new System.Drawing.Point(285, 128);
-            this.firstNameErrorTextBox.Name = "firstNameErrorTextBox";
-            this.firstNameErrorTextBox.ReadOnly = true;
-            this.firstNameErrorTextBox.Size = new System.Drawing.Size(373, 23);
-            this.firstNameErrorTextBox.TabIndex = 12;
-            // 
-            // usernameErrorTextBox
-            // 
-            this.usernameErrorTextBox.Location = new System.Drawing.Point(285, 99);
-            this.usernameErrorTextBox.Name = "usernameErrorTextBox";
-            this.usernameErrorTextBox.ReadOnly = true;
-            this.usernameErrorTextBox.Size = new System.Drawing.Size(373, 23);
-            this.usernameErrorTextBox.TabIndex = 11;
-            // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lastNameErrorTextBox);
-            this.Controls.Add(this.firstNameErrorTextBox);
-            this.Controls.Add(this.usernameErrorTextBox);
-            this.Controls.Add(this.retryPasswordErrorTextBox);
-            this.Controls.Add(this.passwordErrorTextBox);
-            this.Controls.Add(this.emailErrorTextBox);
             this.Controls.Add(this.registerButton);
             this.Controls.Add(this.lastNameTextBox);
             this.Controls.Add(this.firstNameTextBox);
@@ -186,11 +126,5 @@
         private TextBox lastNameTextBox;
         private TextBox firstNameTextBox;
         private Button registerButton;
-        private TextBox emailErrorTextBox;
-        private TextBox passwordErrorTextBox;
-        private TextBox retryPasswordErrorTextBox;
-        private TextBox lastNameErrorTextBox;
-        private TextBox firstNameErrorTextBox;
-        private TextBox usernameErrorTextBox;
     }
 }
