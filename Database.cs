@@ -78,7 +78,8 @@ namespace InverseMarketProject
                     rdr.GetString(2), // description
                     rdr.GetString(3), // price
                     rdr.GetString(4), // status
-                    rdr.GetInt32(5) // userId
+                    rdr.GetInt32(5), // userId
+                    rdr.GetDateTime(6) // Posted
                   )
                 );
             }
