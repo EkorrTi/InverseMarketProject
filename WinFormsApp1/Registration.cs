@@ -114,7 +114,8 @@ namespace WinFormsApp1
             if (!isUserExists)
             {
                 db.InsertUser(user);
-                Hide();
+                db.closeConnection();
+                this.Hide();
                 var loginForm = new Form1(); // TODO replace with LoginForm
                 loginForm.Show();
             }
@@ -193,11 +194,6 @@ namespace WinFormsApp1
                 MessageBox.Show("Email is empty");
                 return false;
             }
-        }
-
-        private void Registration_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }
