@@ -32,6 +32,7 @@
             this.usernameLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.toAddAdvert = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,11 +81,22 @@
             this.toAddAdvert.UseVisualStyleBackColor = true;
             this.toAddAdvert.Click += new System.EventHandler(this.toAddAdvert_Click);
             // 
+            // removeButton
+            // 
+            this.removeButton.Location = new System.Drawing.Point(872, 173);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(75, 23);
+            this.removeButton.TabIndex = 9;
+            this.removeButton.Text = "remove";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            // 
             // ListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(993, 461);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.toAddAdvert);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.usernameLabel);
@@ -105,5 +117,6 @@
         private Label usernameLabel;
         private Label label2;
         private Button toAddAdvert;
+        private Button removeButton;
     }
 }

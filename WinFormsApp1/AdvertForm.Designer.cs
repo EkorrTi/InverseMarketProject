@@ -36,17 +36,17 @@
             this.replyInfoTextBox = new System.Windows.Forms.TextBox();
             this.replyPriceTextBox = new System.Windows.Forms.TextBox();
             this.replyMessageTextBox = new System.Windows.Forms.TextBox();
-            this.statusTextBox = new System.Windows.Forms.TextBox();
-            this.orderComboBox = new System.Windows.Forms.ComboBox();
-            this.orderBy = new System.Windows.Forms.Label();
+            this.authorTextBox = new System.Windows.Forms.TextBox();
             this.backButton = new System.Windows.Forms.Button();
             this.replyDataGrid = new System.Windows.Forms.DataGridView();
+            this.removeButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.replyDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // titleTextBox
             // 
+            this.titleTextBox.Enabled = false;
             this.titleTextBox.Location = new System.Drawing.Point(12, 12);
             this.titleTextBox.Multiline = true;
             this.titleTextBox.Name = "titleTextBox";
@@ -56,6 +56,7 @@
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.Enabled = false;
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 41);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
@@ -66,6 +67,7 @@
             // priceTextBox
             // 
             this.priceTextBox.BackColor = System.Drawing.Color.Moccasin;
+            this.priceTextBox.Enabled = false;
             this.priceTextBox.Location = new System.Drawing.Point(710, 139);
             this.priceTextBox.Multiline = true;
             this.priceTextBox.Name = "priceTextBox";
@@ -97,6 +99,7 @@
             // 
             // replyInfoTextBox
             // 
+            this.replyInfoTextBox.Enabled = false;
             this.replyInfoTextBox.Location = new System.Drawing.Point(3, 3);
             this.replyInfoTextBox.Multiline = true;
             this.replyInfoTextBox.Name = "replyInfoTextBox";
@@ -124,32 +127,15 @@
             this.replyMessageTextBox.Size = new System.Drawing.Size(770, 79);
             this.replyMessageTextBox.TabIndex = 0;
             // 
-            // statusTextBox
+            // authorTextBox
             // 
-            this.statusTextBox.Location = new System.Drawing.Point(538, 139);
-            this.statusTextBox.Multiline = true;
-            this.statusTextBox.Name = "statusTextBox";
-            this.statusTextBox.ReadOnly = true;
-            this.statusTextBox.Size = new System.Drawing.Size(166, 23);
-            this.statusTextBox.TabIndex = 6;
-            // 
-            // orderComboBox
-            // 
-            this.orderComboBox.FormattingEnabled = true;
-            this.orderComboBox.Location = new System.Drawing.Point(667, 168);
-            this.orderComboBox.Name = "orderComboBox";
-            this.orderComboBox.Size = new System.Drawing.Size(121, 23);
-            this.orderComboBox.TabIndex = 8;
-            this.orderComboBox.SelectedIndexChanged += new System.EventHandler(this.orderComboBox_SelectedIndexChanged);
-            // 
-            // orderBy
-            // 
-            this.orderBy.AutoSize = true;
-            this.orderBy.Location = new System.Drawing.Point(608, 171);
-            this.orderBy.Name = "orderBy";
-            this.orderBy.Size = new System.Drawing.Size(56, 15);
-            this.orderBy.TabIndex = 9;
-            this.orderBy.Text = "Order by:";
+            this.authorTextBox.Enabled = false;
+            this.authorTextBox.Location = new System.Drawing.Point(538, 139);
+            this.authorTextBox.Multiline = true;
+            this.authorTextBox.Name = "authorTextBox";
+            this.authorTextBox.ReadOnly = true;
+            this.authorTextBox.Size = new System.Drawing.Size(166, 23);
+            this.authorTextBox.TabIndex = 6;
             // 
             // backButton
             // 
@@ -167,19 +153,28 @@
             this.replyDataGrid.Location = new System.Drawing.Point(12, 392);
             this.replyDataGrid.Name = "replyDataGrid";
             this.replyDataGrid.RowTemplate.Height = 25;
-            this.replyDataGrid.Size = new System.Drawing.Size(776, 150);
+            this.replyDataGrid.Size = new System.Drawing.Size(707, 150);
             this.replyDataGrid.TabIndex = 11;
+            // 
+            // removeButton
+            // 
+            this.removeButton.Location = new System.Drawing.Point(725, 392);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(75, 23);
+            this.removeButton.TabIndex = 6;
+            this.removeButton.Text = "Delete";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
             // AdvertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.replyDataGrid);
             this.Controls.Add(this.backButton);
-            this.Controls.Add(this.orderBy);
-            this.Controls.Add(this.orderComboBox);
-            this.Controls.Add(this.statusTextBox);
+            this.Controls.Add(this.authorTextBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.priceTextBox);
             this.Controls.Add(this.descriptionTextBox);
@@ -206,9 +201,9 @@
         private TextBox replyMessageTextBox;
         private Button replyButton;
         private TextBox statusTextBox;
-        private ComboBox orderComboBox;
-        private Label orderBy;
         private Button backButton;
         private DataGridView replyDataGrid;
+        private Button removeButton;
+        private TextBox authorTextBox;
     }
 }

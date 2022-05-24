@@ -35,11 +35,6 @@ namespace WinFormsApp1
         public AdvertForm(int advertId) : this()
         {
             this.advertId = advertId;
-            orderComboBox.Items.Add(ORDER_BY_DATE_DESC);
-            orderComboBox.Items.Add(ORDER_BY_DATE_ASC);
-            orderComboBox.Items.Add(ORDER_BY_PRICE_DESC);
-            orderComboBox.Items.Add(ORDER_BY_PRICE_ASC);
-            orderComboBox.SelectedIndex = ORDER_BY_DATE_DESC_INDEX;
             setAdvert();
         }
 
@@ -48,12 +43,12 @@ namespace WinFormsApp1
             Advert advert = db.GetAdvertById(advertId);
             titleTextBox.Text = advert.Title;
             descriptionTextBox.Text = advert.Description;
-            statusTextBox.Text = advert.Status;
             priceTextBox.Text = advert.TotalPrice.ToString();
 
-            getList();
+            User author = db.GetUserById(advert.UserId);
+            authorTextBox.Text = author.UserName;
 
-            setList();
+            getList();
         }
 
         private void setList()
@@ -82,13 +77,18 @@ namespace WinFormsApp1
                 repliesWithAuthor.Add(new Tuple<Reply, String, int>(reply, user.UserName, user.Id));
             }
             this.replies =  repliesWithAuthor;
-            orderByDateDesc();
+            setList();
         }
 
         private void replyButton_Click(object sender, EventArgs e)
         {
             var message = replyMessageTextBox.Text;
             var price = 0;
+            if (message == "")
+            {
+                MessageBox.Show("Add message");
+                return;
+            }
             try
             {
                 price = replyPriceTextBox.Text == "" ? 0 : Convert.ToInt32(replyPriceTextBox.Text);
@@ -98,15 +98,15 @@ namespace WinFormsApp1
                 return;
             }
 
-
-            var userId = 1; // TODO GET CURRENT USER
-
             db.InsertReply(
                 new Reply(message: message, 
                           price: price, 
-                          userId: userId, 
+                          userId: FormProvider.loggedUser.Id, 
                           advertId: advertId)
                 );
+            replyMessageTextBox.Text = "";
+            replyPriceTextBox.Text = "";
+            getList();
         }
 
         private void replyPriceTextBox_TextChanged(object sender, EventArgs e)
@@ -117,25 +117,6 @@ namespace WinFormsApp1
             }
         }
 
-        private void orderComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch(orderComboBox.SelectedIndex)
-            {
-                case ORDER_BY_DATE_ASC_INDEX:
-                    orderByDateAsc();
-                    break;
-                case ORDER_BY_PRICE_DESC_INDEX:
-                    orderByPriceDesc();
-                    break;
-                case ORDER_BY_PRICE_ASC_INDEX:
-                    orderByPriceAsc();
-                    break;
-                default:
-                    orderByDateDesc();
-                    break;
-            };
-            setList();
-        }
 
         private void orderByPriceAsc()
         {
@@ -175,6 +156,21 @@ namespace WinFormsApp1
         private void AdvertForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in replyDataGrid.SelectedRows)
+            {
+                int id = Convert.ToInt32(item.Cells[0].Value.ToString());
+                int userId = Convert.ToInt32(item.Cells[3].Value.ToString());
+                if (userId == FormProvider.loggedUser.Id)
+                {
+                    replyDataGrid.Rows.RemoveAt(item.Index);
+                    Database db = new();
+                    db.DeleteReply(id);
+                }
+            }
         }
     }
 }

@@ -97,6 +97,7 @@
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.Size = new System.Drawing.Size(167, 23);
             this.passTextBox.TabIndex = 6;
+            this.passTextBox.UseSystemPasswordChar = true;
             this.passTextBox.TextChanged += new System.EventHandler(this.passTextBox_TextChanged);
             // 
             // toRegister

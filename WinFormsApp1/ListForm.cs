@@ -49,19 +49,34 @@ namespace WinFormsApp1
             label2.Text = "Clicked on id=" + rowId;
             FormProvider.advertForm = new AdvertForm(rowId);
             FormProvider.advertForm.Show();
-            Close();
+            Hide();
         }
 
         private void toAddAdvert_Click(object sender, EventArgs e)
         {
             FormProvider.addAdvertForm = new AddAdvertForm();
             FormProvider.addAdvertForm.Show();
-            Close();
+            Hide();
         }
 
         private void ListForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow item in dataGridView1.SelectedRows)
+            {
+                int id = Convert.ToInt32(item.Cells[0].Value.ToString());
+                int userId = Convert.ToInt32(item.Cells[5].Value.ToString());
+                if (userId == FormProvider.loggedUser.Id)
+                {
+                    dataGridView1.Rows.RemoveAt(item.Index);
+                    Database db = new();
+                    db.DeleteAdvert(id);
+                }
+            }
         }
     }
 }
