@@ -43,11 +43,34 @@ namespace InverseMarketProject
         private static readonly String deleteAdvertById = "DELETE FROM advert WHERE id = $1";
         private static readonly String deleteReplyById = "DELETE FROM reply WHERE id = $1";
 
+        public async Task<NpgsqlDataReader> query(string query)
+        {   
+            using (var command = new NpgsqlCommand(query, conn))
+            {
+                var result = await command.ExecuteReaderAsync();
+                return result;
+            }
+        }
+
+        public async Task<NpgsqlDataReader> query(NpgsqlCommand cmd)
+        {
+
+            var result = await cmd.ExecuteReaderAsync();
+            return result;
+        }
+
+        public async Task<int> nonQuery(NpgsqlCommand cmd)
+        {
+
+            var result = await cmd.ExecuteNonQueryAsync();
+            return result;
+        }
+
         public List<User> GetUsers()
         {
             List<User> list = new();
             using var cmd = new NpgsqlCommand(getUsers, conn);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(cmd).Result;
 
             while (rdr.Read()) {
                  list.Add( new User(
@@ -68,8 +91,7 @@ namespace InverseMarketProject
         {
             List<Advert> list = new();
 
-            using var cmd = new NpgsqlCommand(getAdverts, conn);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(getAdverts).Result;
 
             while (rdr.Read())
             {
@@ -91,8 +113,7 @@ namespace InverseMarketProject
         {
             List<Reply> list = new();
 
-            using var cmd = new NpgsqlCommand(getReplies, conn);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(getReplies).Result;
 
             while (rdr.Read())
             {
@@ -111,7 +132,7 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getUserById, conn);
             cmd.Parameters.AddWithValue(id);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(cmd).Result;
             rdr.Read();
 
             return new User(
@@ -128,7 +149,7 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getUserByUsername, conn);
             cmd.Parameters.AddWithValue(username);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(cmd).Result;
             if( rdr.Read() )
                 return new User(
                         rdr.GetInt32(0), // Id
@@ -145,7 +166,7 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getUserByEmail, conn);
             cmd.Parameters.AddWithValue(email);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(cmd).Result;
             if (rdr.Read())
                 return new User(
                          rdr.GetInt32(0), // Id
@@ -163,7 +184,7 @@ namespace InverseMarketProject
             using var cmd = new NpgsqlCommand(getUserByEmailAndPassword, conn);
             cmd.Parameters.AddWithValue(email);
             cmd.Parameters.AddWithValue(password);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(cmd).Result;
             if (rdr.Read())
                 return new User(
                          rdr.GetInt32(0), // Id
@@ -180,7 +201,7 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getAdvertById, conn);
             cmd.Parameters.AddWithValue(id);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(cmd).Result;
             if ( rdr.Read() )
                 return new Advert(
                     rdr.GetInt32(0), // Id
@@ -197,7 +218,7 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getReplyById, conn);
             cmd.Parameters.AddWithValue(id);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(cmd).Result;
             if (rdr.Read())
                 return new Reply(
                     rdr.GetInt32(0), // Id
@@ -213,7 +234,7 @@ namespace InverseMarketProject
         {
             using var cmd = new NpgsqlCommand(getRepliesByAdvertId, conn);
             cmd.Parameters.AddWithValue(advertId);
-            using var rdr = cmd.ExecuteReader();
+            using var rdr = query(cmd).Result;
             List<Reply> replies = new();
             while (rdr.Read())
             {
@@ -230,7 +251,7 @@ namespace InverseMarketProject
 
         public bool InsertUser(User u)
         {
-            using var cmdd = new NpgsqlCommand(insertUser, conn)
+            using var cmd = new NpgsqlCommand(insertUser, conn)
             {
                 Parameters = {
                     new() {Value = u.Email},
@@ -240,14 +261,13 @@ namespace InverseMarketProject
                     new() {Value = u.UserName}
                 }
             };
-            if (cmdd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1);
         }
 
         public bool InsertAdvert(Advert a)
         {
-            using var cmdd = new NpgsqlCommand(insertAdvert, conn)
+            using var cmd = new NpgsqlCommand(insertAdvert, conn)
             {
                 Parameters = {
                     new() {Value = a.Title},
@@ -257,9 +277,8 @@ namespace InverseMarketProject
                     new() {Value = a.UserId}
                 }
             };
-            if (cmdd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1) ;
         }
 
         public bool InsertReply(Reply r)
@@ -273,14 +292,13 @@ namespace InverseMarketProject
                     new() {Value = r.AdvertId}
                 }
             };
-            if (cmd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1);
         }
 
         public bool UpdateUser(User u)
         {
-            using var cmdd = new NpgsqlCommand(updateUser, conn)
+            using var cmd = new NpgsqlCommand(updateUser, conn)
             {
                 Parameters = {
                     new() {Value = u.Id},
@@ -291,14 +309,13 @@ namespace InverseMarketProject
                     new() {Value = u.UserName}
                 }
             };
-            if (cmdd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1);
         }
 
         public bool UpdateAdvert(Advert a)
         {
-            using var cmdd = new NpgsqlCommand(updateAdvert, conn)
+            using var cmd = new NpgsqlCommand(updateAdvert, conn)
             {
                 Parameters = {
                     new() {Value = a.Id},
@@ -309,9 +326,8 @@ namespace InverseMarketProject
                     new() {Value = a.UserId}
                 }
             };
-            if (cmdd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1);
         }
 
         public bool UpdateReply(Reply r)
@@ -326,36 +342,32 @@ namespace InverseMarketProject
                     new() {Value = r.AdvertId}
                 }
             };
-            if (cmd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1);
         }
 
         public bool DeleteUser(int id)
         {
             using var cmd = new NpgsqlCommand(deleteUserById, conn);
             cmd.Parameters.AddWithValue(id);
-            if (cmd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1);
         }
 
         public bool DeleteAdvert(int id)
         {
             using var cmd = new NpgsqlCommand(deleteAdvertById, conn);
             cmd.Parameters.AddWithValue(id);
-            if (cmd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1);
         }
 
         public bool DeleteReply(int id)
         {
             using var cmd = new NpgsqlCommand(deleteReplyById, conn);
             cmd.Parameters.AddWithValue(id);
-            if (cmd.ExecuteNonQuery() != -1)
-                return true;
-            return false;
+            int result = nonQuery(cmd).Result;
+            return (result != -1);
         }
     }
 }
