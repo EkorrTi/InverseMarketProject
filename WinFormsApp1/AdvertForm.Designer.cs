@@ -37,11 +37,12 @@
             this.replyPriceTextBox = new System.Windows.Forms.TextBox();
             this.replyMessageTextBox = new System.Windows.Forms.TextBox();
             this.statusTextBox = new System.Windows.Forms.TextBox();
-            this.replyListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.orderComboBox = new System.Windows.Forms.ComboBox();
             this.orderBy = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
+            this.replyDataGrid = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.replyDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // titleTextBox
@@ -132,13 +133,6 @@
             this.statusTextBox.Size = new System.Drawing.Size(166, 23);
             this.statusTextBox.TabIndex = 6;
             // 
-            // replyListPanel
-            // 
-            this.replyListPanel.Location = new System.Drawing.Point(12, 383);
-            this.replyListPanel.Name = "replyListPanel";
-            this.replyListPanel.Size = new System.Drawing.Size(776, 119);
-            this.replyListPanel.TabIndex = 7;
-            // 
             // orderComboBox
             // 
             this.orderComboBox.FormattingEnabled = true;
@@ -167,15 +161,24 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // replyDataGrid
+            // 
+            this.replyDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.replyDataGrid.Location = new System.Drawing.Point(12, 392);
+            this.replyDataGrid.Name = "replyDataGrid";
+            this.replyDataGrid.RowTemplate.Height = 25;
+            this.replyDataGrid.Size = new System.Drawing.Size(776, 150);
+            this.replyDataGrid.TabIndex = 11;
+            // 
             // AdvertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.replyDataGrid);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.orderBy);
             this.Controls.Add(this.orderComboBox);
-            this.Controls.Add(this.replyListPanel);
             this.Controls.Add(this.statusTextBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.priceTextBox);
@@ -186,6 +189,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdvertForm_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.replyDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,9 +206,9 @@
         private TextBox replyMessageTextBox;
         private Button replyButton;
         private TextBox statusTextBox;
-        private FlowLayoutPanel replyListPanel;
         private ComboBox orderComboBox;
         private Label orderBy;
         private Button backButton;
+        private DataGridView replyDataGrid;
     }
 }

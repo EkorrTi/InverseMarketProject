@@ -58,26 +58,28 @@ namespace WinFormsApp1
 
         private void setList()
         {
-            replyListPanel.Controls.Clear();
-            ReplyForm[] replyForms = new ReplyForm[this.replyList.Count];
-            foreach(Tuple<Reply, String> reply in this.replies)
+            DataTable dt = new();
+            dt.Columns.Add("ID", typeof(int));
+            dt.Columns.Add("message", typeof(string));
+            dt.Columns.Add("price", typeof(int));
+            dt.Columns.Add("AuthorID", typeof(int));
+            dt.Columns.Add("Author", typeof(string));
+            
+            foreach(Tuple<Reply, string, int> reply in replies)
             {
-                ReplyForm replyForm = new();
-                replyForm.Message = reply.Item1.Message;
-                replyForm.Author = reply.Item2;
-                replyForm.Price = reply.Item1.Price;
-                replyListPanel.Controls.Add(replyForm);
+                dt.Rows.Add(new Object[] { reply.Item1.Id, reply.Item1.Message, reply.Item1.Price, reply.Item3, reply.Item2 });
             }
+            replyDataGrid.DataSource = dt;
         }
 
         private void getList()
         {
             List<Reply> replies = db.GetRepliesByAdvertId(advertId);
-            List<Tuple<Reply, String>> repliesWithAuthor = new();
+            List<Tuple<Reply, String, int>> repliesWithAuthor = new();
             foreach (Reply reply in replies)
             {
                 var user = db.GetUserById(reply.UserId);
-                repliesWithAuthor.Add(new Tuple<Reply, String>(reply, user.UserName));
+                repliesWithAuthor.Add(new Tuple<Reply, String, int>(reply, user.UserName, user.Id));
             }
             this.replies =  repliesWithAuthor;
             orderByDateDesc();
